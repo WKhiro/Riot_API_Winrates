@@ -1,11 +1,21 @@
 # Riot API Win Rates
 
-A project in which I want to use the data queried from Riot Games' API in order to generate winrates for a summoner's requested champion. The ordering of my goals is as follows:
+A project in which I wanted to use the data queried from Riot Games' API in order to generate win rates for a summoner's requested champion. My initial idea was to calculate their win rate from a large number of games with a quick search (unlike OP.GG which requires you to constantly load in more games one section at a time). However, this project is limited by Riot Games' API rate limits, so I can only query so many games at a time. It currently functions as intended within a certain limit. If I were to revisit this project to expand upon it, I would most-likely have to maintain my own database, or scrape information from a website like OP.GG to get all the data necessary. At the moment, this is how the program works:
 
-### Query the champion that a summoner was playing in multiple games
-### Query if they won or lost
-### Calculate the win rate
+### Instructions:
 
-# Future features?
+This program requires you to input an API key from Riot Games. You can generate one on their developer website [here](https://developer.riotgames.com/). Then you simply need to provide:
+- API key
+- Server (Region)
+- Summoner name
+- Specific champion if desired
+- Recent game to check up to a limit
 
-I also want to calculate their win ratios against specific opponents (basically see who they beat or lose to the most)
+You will then be provided with your desired win rate, alongside the number of remade games and total KDA for fun.
+
+### Future Improvements:
+
+If I am able to circumvent the rate limits in the future, I would add the following features:
+- The ability to check which opponents you struggle most/least against (based on win rates, of course)
+- Build paths that grant you the greatest success
+- A functional UI. Maybe turn this into a web application
