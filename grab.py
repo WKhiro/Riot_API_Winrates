@@ -5,9 +5,8 @@ def requestSummonerData(region, summonerName, APIKey):
     response = requests.get(URL)
     return response.json()
 
-def requestMatchHistory(region, ID, APIKey):
-    # End index 10 as a limit
-    URL = "https://" + "na1" + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + ID + "?endIndex=10" + "&api_key=" + APIKey
+def requestMatchHistory(region, ID, APIKey, games):
+    URL = "https://" + "na1" + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + ID + "?endIndex=" + games + "&api_key=" + APIKey
     response = requests.get(URL)
     return response.json()
 
@@ -23,9 +22,14 @@ def requestChampions():
     
 def main():
 
+    # Wukong is MonkeyKing
+
     # Default na1
     region = ""
     summonerName = (str)(input("Name: "))
+    championDefault = (str)(input("Champion: "))
+    games = (str)(input("Games to query for " + championDefault + ": "))
+    print("Analyzing...")
 
     # Input secret API key
     APIKey = ""
@@ -38,7 +42,7 @@ def main():
     accountID = (str)(summonerJSON["accountId"])
 
     # Get match history up to a limit
-    historyJSON = requestMatchHistory(region, accountID, APIKey)
+    historyJSON = requestMatchHistory(region, accountID, APIKey, games)
 
     # Get the ID of each match in the queried match history
     for match in historyJSON["matches"]:
@@ -62,17 +66,35 @@ def main():
                     allResults.append(row)
                     
     # Results and champion KEYS of each match
-    print("Keyed Results:", allResults)
+    #print("Keyed Results:", allResults)
 
     # Switch them out for champion names
     champJSON = requestChampions()["data"]
     allChamps =[]
+    
+##    namesForAccuracy = []
+##    for y in champJSON:
+##        namesForAccuracy.append((str)(champJSON[y]["id"]))
+        
     for x in allResults:
         for y in champJSON:
             if x[0] == champJSON[y]["key"]:
                 x[0] = champJSON[y]["id"]
-    print(allResults)
-    
+    #print("Fixed Results:", allResults)
+    #print(namesForAccuracy)
+
+    if championDefault not in [chimps[0] for chimps in allResults]:
+        print("Champion hasn't been played recently")
+        quit()
+    counter = 0
+    wins = 0
+    for x in allResults:
+        if x[0] == championDefault:
+            if x[1] == "True":
+                wins += 1
+            counter += 1
+    print("Winrate:", (wins/counter)*100, " Wins:", wins, " Total:", counter)
+
 
 if __name__ == "__main__":
     main()
