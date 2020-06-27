@@ -2,7 +2,7 @@
 
 A project in which I wanted to use the data queried from Riot Games' API in order to generate win rates for a summoner's requested champion. My initial idea was to calculate their win rate from a large number of games with a quick search (unlike OP.GG which requires you to constantly load in more games one section at a time). However, this project is limited by Riot Games' API rate limits, so I can only query so many games at a time. It currently functions as intended within a certain limit. If I were to revisit this project to expand upon it, I would most-likely have to maintain my own database, or scrape information from a website like OP.GG to get all the data necessary. At the moment, this is how the program works:
 
-![](https://imgur.com/a/1lHZayI)
+![](https://i.imgur.com/jTZFGD5.png)
 
 ### Instructions:
 
