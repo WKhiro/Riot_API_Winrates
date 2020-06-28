@@ -11,7 +11,7 @@ This program requires you to input an API key from Riot Games. You can generate 
 - Server (Region)
 - Summoner name
 - Specific champion if desired
-- Recent game to check up to a limit
+- How many recent games to utilize in the calculations (up to a limit)
 
 You will then be provided with your desired win rate, alongside the number of remade games and total KDA for fun.
 
